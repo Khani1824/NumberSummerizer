@@ -1,22 +1,23 @@
-/**
- * @author Werner *
- * Implement this Interface to produce a comma delimited list of numbers,
- * grouping the numbers into a range when they are sequential. *
- *
- * Sample Input:
-" 1, 3, 6, 7, 8, 12, 13, 14, 15, 21, 22, 23, 24, 31 * Result: "1, 3, 6-8, 12-15, 21-24, 31" *
- * The code will be evaluated on * - functionality
- * -style
- * - robustness - best practices
- * - unit tests
-public interface NumberRangeSummarizer { I/collect the input
-Collection<Integer› collect(String
-input);
-//get the summarized
-string
-String
-summarizeCollection(Collection<Integer> input);
+import java.util.Collection;
+
 public class Main {
-public static void main(String[] args) {
-System.out.println("Hello world!"); }
-} **/
+    /***
+     * This class tries to create  one instance of the CollectionsHandler method is created the methods collect is called and the input string
+     * is passed to create a collection of Integers called collectResult, the collection is then passed through the
+     * summarizeCollection and printed. If this fails it results in a NumberFormatException exception.
+     */
+    public static void main(String[] args) {
+        String input = "1, 3, 6, 7, 8, 12, 13, 14, 15, 21, 22, 23, 24, 31";
+        try {
+            CollectionHandler listOfNumbers = new CollectionHandler();
+            Collection<Integer> collectResult = listOfNumbers.collect(input); // creates a collection of integers
+            System.out.println(listOfNumbers.summarizeCollection(collectResult));
+        } catch (NumberFormatException nfe) {
+            System.out.printf("Invalid input: %s should contain only numerical values.%n", input); // exception caught when invalid input is provided
+        } catch (NullPointerException npe) {
+            System.out.println("Invalid input: Input cannot be null");
+        } catch (Exception e) {
+            System.out.printf("Something has gone wrong, and an exception has been thrown: %s", e.getMessage());
+        }
+    }
+}
